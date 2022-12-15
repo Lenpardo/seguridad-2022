@@ -1,0 +1,80 @@
+py -m pip freeze > requirements.txt 
+py -m pip install -r requirements.txt
+
+
+
+direcciones: www.example.org(por ejemplo)
+escribe:Python WSGI
+ruta de aplicación:/myapp/myapp/wsgi.py
+directorio de trabajo:/myapp/
+directorio virtualenv:/myenv/
+caminos estáticos:/static=static
+
+Para llegar a este punto he de suponer que ya se han registrado con una cuenta free o no-free a alwaysdata
+
+bueno como sabrán la interfaz de alwaysdata es muy sencilla. Configurar la versión de Django , yo he configurado mi versión a la 1.4.1 de Django. 
+
+Antes que todo quiero recordarles que en alwaysdata se puede usar mercurial y git, que son sistemas de versionamiento que les servirá enormemente en la gestión de sus aplicaciones versionando y ramificando y documentando todos los cambios por mas pequeños que sean archivo por archivo. Yo uso bitbucket para saber mas sobre bitbucket y versionamiento pueden entrar a https://bitbucket.org/. 
+
+Para subir nuestro proyecto tenemos dos opciones subirlo por ftp o hacer un clon de nuestro repositorio, yo recomiendo lo segundo puesto. Si quieren saber los motivos entren al link que les he puesto en la parte de arriba.
+
+Si tenemos un repositorio en donde ya hemos guardado o subido o cargado nuestro proyecto solo debemos hacer uso del comando hg clone para clonar nuestra aplicación dentro de nuestra hosting. 
+
+
+Ha sido un poco dificil la configuracion para poder levantar en un servidor gratuito como alwaysdata una aplicacion hecha en django basada en python. 
+Luego de algunas pautas, y algo de investigacion logre llevar a cabo la ejecucion de mi aplicacion.
+Recomendaciones:
+Llevar a cabo la configuracion de nuestra aplicacion mediante ssh
+Para evitar muchos rondedos que con el hecho de tener que copiar nuestra aplicaciones y que estamos limitados a usar solo el comando "nano"
+
+Subiremos nuestros proyecto a bitbucket, esto lo puede hacer creandose una cuenta y siguiendo los pasos para subir un proyecto.
+
+Entramos mediante ssh, de la siguiente manera "ssh nuestra_cuenta@ssh.alwaysdata.com" y luego nos pedira la contraseña, escribirla y luego dar enter, no olvidar de activar la conexion ssh, el link es "https://admin.alwaysdata.com/ssh/"
+
+clonamos nuestra aplicacion dentro de la ruta por defecto en la cual visualizamos las carpetas admin, cgi-bin y www; escribiremos el comando para clonar desde bitbucket por ejemplo "hg clone https://bitbucket.org/makethings/mi_proyecto" esto tambien pueden verlo en la misma pagina de bitbucket
+
+se creara una carpeta por defecto mismo del nombre de nuestro proyecto clonado siempre en minusculas, debemos entrar a esa carpeta y copiar nuestro verdadero proyecto hacia la ruta por defecto que vimos en el parrafo anterior podemos ir simplemente ejecutando el comando "cd" y dando luego enter. para copiar nuestro proyecto real lo hacemos con el comando "cp -rf nuestro_proyecto /home/mi_usuario/" este comando copiara el proyecto hacia la ruta por defecto
+
+Luego escribimos el comando cd para ir a la ruta por defecto y si nuestro proyecto esta solo en minusculas encontramos solo una carpeta si teniamos un proyecto en el cual nuestro nombre de proyecto contenia algunas mayusculas o era solo de mayusculas encontramos dos carpetas la carpeta de nuestro proyecto en si que esta en mayusculas y la carpeta de clonacion que estara siempre em minusculas !! les recomiendo que antes de subirlo a bitbucket su carpeta o el nombre de ella este todo en mayusculas para que en esta etapa puedan diferenciarlo
+
+Entramos en nuestro proyecto y nos dirigimos a la carpeta de configuracion de nuestro proyecto que tiene el mismo nombre de nuestro proyecto, en esta carpeta creamos la carpeta "public" mediante el comando "mkdir public"
+
+Una vez creada la carpeta "public" entramos a esta carpeta mediante el comando "cd public" y crearemos dos archivos y symlink o enlace simbolico
+
+primer archivo a crear el archivo django.fcgi
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#!/usr/bin/python
+import os, sys
+
+_PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, _PROJECT_DIR)
+sys.path.insert(0, os.path.dirname(_PROJECT_DIR))
+
+_PROJECT_NAME = _PROJECT_DIR.split('/')[-1]
+os.environ['DJANGO_SETTINGS_MODULE'] = "%s.settings" % _PROJECT_NAME
+
+from django.core.servers.fastcgi import runfastcgi
+runfastcgi(method="threaded", daemonize="false") 
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+segundo archivo, el archivo .htaccess
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+AddHandler fcgid-script .fcgi
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ django.fcgi/$1 [QSA,L]
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+y el symlink o enlace simbolico:
+
+mediante este comando "cp -rf /usr/local/alwaysdata/python/django/1.4/django/contrib/admin/static/admin ~/nuestro_proyecto/nuestro_proyecto/public/"
+
+Antes de teminar debemos convertir los archivos a unix y darles permisos de ejecucion
+para convertir el primero archivo los haremos con el comando "dos2unix django.fcgi" y el segundo "dos2unix .htaccess" y le daremos permisos mediante el comando "chmod", de la siguientes maneras ejecutando los dos comandos "chmod +x django.fcgi" y "chmod +x .htaccess"
+
+ejecutaremos nuestra aplicacion mediante el comando "python django.fcgi"
+
+no se olviden de dar permisos de base de datos si es que usan sqlite, para dar permisos a sqlite lo hacemos mediante el comando "chow www.data /ruta_de_tu proyecto"
+y "chow www.data /ruta_de_tu_base_de_datos"

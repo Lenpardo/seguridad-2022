@@ -1,0 +1,94 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
+    <link rel="stylesheet" type="text/css" href="{% static 'core/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'core/css/signin.css'%}">
+
+    <script type="text/javascript" src="{% static 'core/js/bootstrap.esm.min.js'%}"></script>
+    <script type="text/javascript" src="{% static 'core/js/jquery-3.6.0.min.js'%}"></script>
+
+    <title>Login</title>
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    <!-- Custom styles for this template -->
+  </head>
+
+  <body class="text-center">
+   
+
+<main class="form-signin">
+
+  <div class="card" class="border border-dark">
+  <div class="container" >
+  <div class="card-body" >
+
+    <form method="post" action="{% url 'login' %}">
+    <img class="mb-4" src="{% static 'core/img/user.svg'%}" alt="user" width="72" height="57">
+
+    {% csrf_token %}
+    <!-- {{form}} -->
+
+    <h1 class="h3 mb-3 fw-normal">Iniciar Sesión</h1>
+
+    <div class="form-floating">
+      <input type="text" class="form-control" id="floatingInput" name="username" placeholder="user">
+      <label for="floatingInput">Usuario</label>
+    </div>
+
+    <br>
+
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
+      <label for="floatingPassword">Contraseña</label>
+    </div>
+
+    <!-- <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div> -->
+    <button class="w-100 btn btn-lg btn-primary" type="submit" value="login">Confirmar</button>
+    <!-- <p class="mt-5 mb-3 text-muted">&copy; 2021</p> -->
+  </form>
+  </div>
+ </div>
+</div>
+{% block content %}
+
+{% if form.errors %}
+<p>Tu usuario o Contraseña son incorrecto. intentalo de nuevo</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Su cuenta no tiene acceso a esta página. Para proceder,
+      por favor inicie sesión con una cuenta que tenga acceso.</p>
+    {% else %}
+    <p>Por favor inicie sesión para ver esta página.</p>
+    {% endif %}
+{% endif %}
+</main>
+
+  </body>
+</html>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
+    <link rel="stylesheet" type="text/css" href="{% static 'core/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'core/css/signin.css'%}">
+
+    <script type="text/javascript" src="{% static 'core/js/bootstrap.esm.min.js'%}"></script>
+    <script type="text/javascript" src="{% static 'core/js/jquery-3.6.0.min.js'%}"></script>
+
+    <title>Login</title>
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    <!-- Custom styles for this template -->
+  </head>
+<body>
+
+{% block content %}
+
+{% if form.errors %}
+<p>Tu usuario o Contraseña son incorrecto. intentalo de nuevo</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Su cuenta no tiene acceso a esta página. Para proceder,
+      por favor inicie sesión con una cuenta que tenga acceso.</p>
+    {% else %}
+    <p>Por favor inicie sesión para ver esta página.</p>
+    {% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+
+<div>
+  <td>{{ form.username.label_tag }}</td>
+  <td>{{ form.username }}</td>
+</div>
+<div>
+  <td>{{ form.password.label_tag }}</td>
+  <td>{{ form.password }}</td>
+</div>
+
+<div>
+  <input type="submit" value="login" />
+  <input type="hidden" name="next" value="{{ next }}" />
+</div>
+</form>
+
+{# Assumes you setup the password_reset view in your URLconf #}
+<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+
+{% endblock %}
+    
+</body>
+</html>

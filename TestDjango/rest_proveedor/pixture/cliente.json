@@ -1,0 +1,222 @@
+[
+    {
+      "model": "core.cliente",
+      "pk": 1,
+      "fields": {
+        "telefono": "+56956432505",
+        "nombre": "prueba1",
+        "email": "prueba@gmail.com",
+        "constraseña": "adminadmin",
+        "pais": "chile"
+      }
+    },
+    {
+      "model": "core.cliente",
+      "pk": 2,
+      "fields": {
+        "telefono": "+56956432505",
+        "nombre": "prueba2",
+        "email": "prueba@gmail.com",
+        "constraseña": "adminadmin",
+        "pais": "chile"
+      }
+    },
+    {
+      "model": "core.cliente",
+      "pk": 3,
+      "fields": {
+        "telefono": "+56956432505",
+        "nombre": "prueba3",
+        "email": "prueba@gmail.com",
+        "constraseña": "adminadmin",
+        "pais": "chile"
+      }
+    },
+    {
+      "model": "core.cliente",
+      "pk": 4,
+      "fields": {
+        "telefono": "+56956432505",
+        "nombre": "prueba4",
+        "email": "prueba@gmail.com",
+        "constraseña": "adminadmin",
+        "pais": "chile"
+      }
+    },
+    {
+      "model": "core.cliente",
+      "pk": 5,
+      "fields": {
+        "telefono": "+56956432505",
+        "nombre": "prueba5",
+        "email": "prueba@gmail.com",
+        "constraseña": "adminadmin",
+        "pais": "chile"
+      }
+    },
+    {
+      "model": "core.cliente",
+      "pk": 6,
+      "fields": {
+        "telefono": "+56956432505",
+        "nombre": "prueba6",
+        "email": "prueba@gmail.com",
+        "constraseña": "adminadmin",
+        "pais": "chile"
+      }
+    },
+    {
+      "model": "core.cliente",
+      "pk": 7,
+      "fields": {
+        "telefono": "+56956432505",
+        "nombre": "prueba7",
+        "email": "prueba@gmail.com",
+        "constraseña": "adminadmin",
+        "pais": "chile"
+      }
+    },
+    {
+      "model": "core.cliente",
+      "pk": 8,
+      "fields": {
+        "telefono": "+56956432505",
+        "nombre": "prueba8",
+        "email": "prueba@gmail.com",
+        "constraseña": "adminadmin",
+        "pais": "chile"
+      }
+    },
+    {
+      "model": "core.cliente",
+      "pk": 9,
+      "fields": {
+        "telefono": "+56956432505",
+        "nombre": "prueba9",
+        "email": "prueba@gmail.com",
+        "constraseña": "adminadmin",
+        "pais": "chile"
+      }
+    },
+    {
+      "model": "core.cliente",
+      "pk": 10,
+      "fields": {
+        "telefono": "+56956432505",
+        "nombre": "prueba10",
+        "email": "prueba@gmail.com",
+        "constraseña": "adminadmin",
+        "pais": "chile"
+      }
+    },
+    {
+        "model": "core.cliente",
+        "pk": 11,
+        "fields": {
+          "telefono": "+56956432505",
+          "nombre": "prueba11",
+          "email": "prueba@gmail.com",
+          "constraseña": "adminadmin",
+          "pais": "chile"
+        }
+      },
+      {
+        "model": "core.cliente",
+        "pk": 12,
+        "fields": {
+          "telefono": "+56956432505",
+          "nombre": "prueba12",
+          "email": "prueba@gmail.com",
+          "constraseña": "adminadmin",
+          "pais": "chile"
+        }
+      },
+      {
+        "model": "core.cliente",
+        "pk": 13,
+        "fields": {
+          "telefono": "+56956432505",
+          "nombre": "prueba13",
+          "email": "prueba@gmail.com",
+          "constraseña": "adminadmin",
+          "pais": "chile"
+        }
+      },
+      {
+        "model": "core.cliente",
+        "pk": 14,
+        "fields": {
+          "telefono": "+56956432505",
+          "nombre": "prueba14",
+          "email": "prueba@gmail.com",
+          "constraseña": "adminadmin",
+          "pais": "chile"
+        }
+      },
+      {
+        "model": "core.cliente",
+        "pk": 15,
+        "fields": {
+          "telefono": "+56956432505",
+          "nombre": "prueba15",
+          "email": "prueba@gmail.com",
+          "constraseña": "adminadmin",
+          "pais": "chile"
+        }
+      },
+      {
+        "model": "core.cliente",
+        "pk": 16,
+        "fields": {
+          "telefono": "+56956432505",
+          "nombre": "prueba16",
+          "email": "prueba@gmail.com",
+          "constraseña": "adminadmin",
+          "pais": "chile"
+        }
+      },
+      {
+        "model": "core.cliente",
+        "pk": 17,
+        "fields": {
+          "telefono": "+56956432505",
+          "nombre": "prueba17",
+          "email": "prueba@gmail.com",
+          "constraseña": "adminadmin",
+          "pais": "chile"
+        }
+      },
+      {
+        "model": "core.cliente",
+        "pk": 18,
+        "fields": {
+          "telefono": "+56956432505",
+          "nombre": "prueba18",
+          "email": "prueba@gmail.com",
+          "constraseña": "adminadmin",
+          "pais": "chile"
+        }
+      },
+      {
+        "model": "core.cliente",
+        "pk": 19,
+        "fields": {
+          "telefono": "+56956432505",
+          "nombre": "prueba19",
+          "email": "prueba@gmail.com",
+          "constraseña": "adminadmin",
+          "pais": "chile"
+        }
+      },
+      {
+        "model": "core.cliente",
+        "pk": 20,
+        "fields": {
+          "telefono": "+56956432505",
+          "nombre": "prueba20",
+          "email": "prueba@gmail.com",
+          "constraseña": "adminadmin",
+          "pais": "chile"
+        }
+      }
+  ]
